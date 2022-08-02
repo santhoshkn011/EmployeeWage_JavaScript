@@ -1,6 +1,5 @@
-/*       UC5
-Calculate Wages till a condition of total working hours of 160 or
-max days of 20 is reached for a month.
+/*       UC6
+Store the Daily Wage along with the Total Wage - Save in an Array the Daily Wage
 */
 console.log("Welcome to the employee wage programs.\n");
 const PART_TIME_HRs=4;
@@ -26,13 +25,19 @@ switch(employeeCheck){
         break;        
     }
 }
-
-let totalEmpHrs = 0;
-let totalWorkingDays = 0;
-while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS){
-    totalWorkingDays++;
-    let employeeCheck = Math.floor(Math.random()*10)%3;
-    totalEmpHrs += getWorkingHrs(employeeCheck);
+//function to calculate daily wage
+function DailyWage(empHrs){
+    return empHrs * WAGE_PER_HRs;
 }
-let empWage = totalEmpHrs * WAGE_PER_HRs;
+let totalEmpHrs = 0;
+let empHrs = 0;
+let totalWorkingDays = 0;
+let empDailyWageArr = new Array(); //storing daily wage in an array
+while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS){
+totalWorkingDays++;
+let employeeCheck = Math.floor(Math.random()*10)%3;
+totalEmpHrs += getWorkingHrs(employeeCheck);
+empDailyWageArr.push(DailyWage(empHrs));
+}
+let empWage = DailyWage(totalEmpHrs);
 console.log("Total Days Worked: " + totalWorkingDays + "\nTotal Hours Worked: "+totalEmpHrs+ " \nEmploye wage for the month: $" +empWage);
