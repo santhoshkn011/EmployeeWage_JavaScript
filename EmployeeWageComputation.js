@@ -4,7 +4,7 @@ Daily Wage along
 with the Total Wage - Use Map to store Day wise Wage - Compute the total wage using
 the Map
 */
-console.log("Welcome to the employee wage programs :-) ");
+console.log("Welcome to the employee wage programs.");
 
 const PART_TIME_HRs=4;
 const FULL_TIME_HRs=8;
@@ -36,6 +36,7 @@ let totalWorkingDays = 0;
 let empDailyWageArr = new Array();
 let empDailyWageMap = new Map();
 let empDailyHrsMap = new Map();
+let empDailyHrsAndWageArr = new Array();
 while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS){
     totalWorkingDays++;
     let employeeCheck = Math.floor(Math.random()*10)%3;
@@ -44,6 +45,14 @@ while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS)
     empDailyWageArr.push(calcDailyWage(empHrs));
     empDailyHrsMap.set(totalWorkingDays,empHrs);
     empDailyWageMap.set(totalWorkingDays, calcDailyWage(empHrs));
+    empDailyHrsAndWageArr.push({
+        dayNum :totalWorkingDays,
+        dailyHours:empHrs,
+        dailyWage:calcDailyWage(empHrs),
+        toString(){
+        return '\nDay:' + this.dayNum + ' Working hours = '+this.dailyHours+ ' And Wage Earned= ' +this.dailyWage;
+        }
+    });
 }
 let empWage = calcDailyWage(totalEmpHrs);
 console.log("Total Days is :- " + totalWorkingDays+ "\nTotal Employee Hrs is:- "+totalEmpHrs+ " \nEmploye wage is :- " +empWage);
@@ -115,7 +124,7 @@ function totalDaysWorked(NUM_OF_WORKING_DAYS,dailyWage)
 console.log("UC7G Find the number of days the Employee Worked :" 
 + empDailyWageArr.reduce(totalDaysWorked,0));
 
-//console.log(empDailyWageMap);  
+console.log(empDailyWageMap);  
 
                 //UC8 => Map Function
 
@@ -147,5 +156,8 @@ empDailyHrsMap.forEach( (value , key) =>  {
     else nonWorkingDays.push(key);
 });
 console.log("Full Working Days :- " + fullWorkingDays);
-console.log("Part Working Days :- " + partWorkingDays); 
+console.log("Part Working Days :- " + partWorkingDays);
 console.log("non Working Days :- " + nonWorkingDays);
+
+
+console.log("UC10 : Showing daily Hours Worked And Dailyh Wages Earned: "+empDailyHrsAndWageArr);
