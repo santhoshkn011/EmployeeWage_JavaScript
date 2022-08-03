@@ -37,7 +37,10 @@ while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS)
 totalWorkingDays++;
 let employeeCheck = Math.floor(Math.random()*10)%3;
 totalEmpHrs += getWorkingHrs(employeeCheck);
-empDailyWageArr.push(DailyWage(empHrs));
+empHrs = getWorkingHrs(employeeCheck); //storing the daily wage in empHrs
+empDailyWageArr.push(DailyWage(empHrs)); //pushing the daily wage into the array
 }
 let empWage = DailyWage(totalEmpHrs);
+console.log("Daily Wages in array: ");
+console.log(empDailyWageArr);
 console.log("Total Days Worked: " + totalWorkingDays + "\nTotal Hours Worked: "+totalEmpHrs+ " \nEmploye wage for the month: $" +empWage);
